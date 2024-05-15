@@ -1,0 +1,178 @@
+<!--引用模板-->
+{% extends 'layout/basic.html' %}
+{% block title %}
+网站标题
+{% endblock %}
+{% block css %}
+
+{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home page</title>
+      <style>
+    .card-image {
+          background-repeat: no-repeat;
+          background-position: 50% 50%;
+          background-size: cover;
+          width: 60%;
+          height: 60%;
+<!--          width: 300px;-->
+<!--          height: 300px;-->
+        }
+</style>
+  </head>
+  <body>
+<!--   <div class="content">-->
+<!--            <div class="container-fluid">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-md-4">-->
+<!--                        <div class="card">-->
+
+<!--                            <div class="header">-->
+<!--                                <h4 class="title">Email Statistics</h4>-->
+<!--                                <p class="category">Last Campaign Performance</p>-->
+<!--                            </div>-->
+<!--                            <div class="content">-->
+<!--                                <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>-->
+
+<!--                                <div class="footer">-->
+<!--                                    <div class="legend">-->
+<!--                                        <i class="fa fa-circle text-info"></i> Open-->
+<!--                                        <i class="fa fa-circle text-danger"></i> Bounce-->
+<!--                                        <i class="fa fa-circle text-warning"></i> Unsubscribe-->
+<!--                                    </div>-->
+<!--                                    <hr>-->
+<!--                                    <div class="stats">-->
+<!--                                        <i class="fa fa-clock-o"></i> Campaign sent 2 days ago-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--   </div>-->
+<!--    <h1 align="center">基于量子机器学习的交通事故数据挖掘系统</h1>-->
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+
+                        <div class="header">
+                            <h4 class="title">按州统计交通事故数</h4>
+                            <p class="category">结果可视化</p>
+                        </div>
+                        <div class="content">
+<!--                            <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>-->
+<!--                                <p id="page1">-->
+<!--                                    <iframe align="center" width="10%" height="10%" src="{% url 'accident_sum_state' %}"  frameborder="no"  marginwidth="0" marginheight="0" scrolling="yes"></iframe>-->
+<!--                                </p>-->
+                                <p id="page1"></p>
+<!--                                <p id="page2"></p>-->
+                                    <script>
+                                       $("#page1").load("{% url 'accident_sum_state' %}");
+<!--                                      $("#page2").load("page/Page_2.html");-->
+                                    </script>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card">
+
+                        <div class="header">
+                            <h4 class="title">不同严重程度结果可视化</h4>
+                            <p class="category">采样10000条数据</p>
+                        </div>
+                        <div class="content">
+<!--                            <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>-->
+<!--                                <p id="page1">-->
+<!--                                    <iframe align="center" width="10%" height="10%" src="{% url 'accident_sum_state' %}"  frameborder="no"  marginwidth="0" marginheight="0" scrolling="yes"></iframe>-->
+<!--                                </p>-->
+                                <p id="page3"></p>
+<!--                                <p id="page2"></p>-->
+                                    <script>
+                                       $("#page3").load("{% url 'sample_10000' %}");
+<!--                                      $("#page4").load("page/Page_2.html");-->
+                                    </script>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+
+                        <div class="header">
+                            <h4 class="title">不同严重程度事故可视距离</h4>
+                            <p class="category">采样10000条事故数据</p>
+                        </div>
+                        <div class="content">
+                                <p id="page5"></p>
+<!--                                <p id="page2"></p>-->
+                                    <script>
+                                       $("#page5").load("{% url 'sample_10000_visibility_severity' %}");
+<!--                                      $("#page6").load("page/Page_6.html");-->
+                                    </script>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card">
+
+                        <div class="header">
+                            <h4 class="title">不同严重程度事故影响交通距离</h4>
+                            <p class="category">采样10000条事故数据</p>
+                        </div>
+                        <div class="content">
+<!--                            <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>-->
+<!--                                <p id="page1">-->
+<!--                                    <iframe align="center" width="10%" height="10%" src="{% url 'accident_sum_state' %}"  frameborder="no"  marginwidth="0" marginheight="0" scrolling="yes"></iframe>-->
+<!--                                </p>-->
+                                <p id="page7"></p>
+<!--                                <p id="page2"></p>-->
+                                    <script>
+                                       $("#page7").load("{% url 'sample_10000_distance_severity' %}");
+<!--                                      $("#page8").load("page/Page_8.html");-->
+                                    </script>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+  </body>
+
+	<script type="text/javascript">
+    	$(document).ready(function(){
+
+        	demo.initChartist();
+
+        	$.notify({
+            	icon: 'pe-7s-gift',
+            	message: "欢迎使用</b> - 基于量子机器学习的交通数据挖掘系统."
+
+            },{
+                type: 'info',
+                timer: 4000
+            });
+
+    	});
+	</script>
+
+</html>
+{% endblock %}
+{% block js %}
+{% endblock %}

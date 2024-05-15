@@ -1,0 +1,130 @@
+<!--引用模板-->
+{% extends 'layout/basic.html' %}
+{% block title %}
+网站标题
+{% endblock %}
+{% block css %}
+
+{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Home page</title>
+</head>
+<body>
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title">美国道路交通事故数据集</h4>
+                            <p class="category">2016-2023</p>
+                        </div>
+                        <form method="post" action="">
+                            {% csrf_token %}
+                            &ensp;&ensp;
+                            <input type="text" name="id" placeholder="事故ID 例：A-1" value="{{ fields.id }}">
+                            <input type="text" name="source" placeholder="数据源 例：source1" value="{{ fields.source }}">
+                            <input type="text" name="severity" placeholder="严重程度 例：1" value="{{ fields.severity }}">
+                            <input type="text" name="state" placeholder="州 例：OH" value="{{ fields.state }}">
+                            <input type="text" name="city" placeholder="城市 例：Dayton" value="{{ fields.city }}">
+                            <input type="text" name="county" placeholder="县 例：Montgomery" value="{{ fields.county }}">
+                            <input type="text" name="zipcode" placeholder="邮编 例：45424" value="{{ fields.zipcode }}">
+                            <input type="date" name="start_date" placeholder="最早日期 例：2016-02-08" value="{{ fields.start_date }}">——
+                            <input type="date" name="end_date" placeholder="最晚日期 例:2023-03-01" value="{{ fields.end_date }}">
+                            <button type="submit">查询</button>
+                            <button type="submit" name="clear_button">清空筛选</button>
+                            &ensp;&ensp;
+                            <input type="text" name="search" placeholder="模糊查询">
+                            <button type="submit">查询</button>
+                        </form>
+                        <div class="content table-responsive table-container" style="overflow-x:scroll;overflow-y:hidden;min-height:1800px">
+                            <table class="table table-hover table-striped">
+                                <thead style="position:sticky;top:-14px;background-color:white;z-index:99999;">
+                                    <tr>
+                                    {% for name in info_name %}
+                                        <th>{{ name }}</th>
+                                    {% endfor %}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for i in info2 %}
+                                    <tr>
+                                        <td>{{ i.id }}</td>
+                                        <td>{{ i.source }}</td>
+                                        <td>{{ i.severity }}</td>
+                                        <td>{{ i.start_time }}</td>
+                                        <td>{{ i.end_time }}</td>
+                                        <td>{{ i.start_lat }}</td>
+                                        <td>{{ i.start_lng }}</td>
+                                        <td>{{ i.end_lat }}</td>
+                                        <td>{{ i.end_lng }}</td>
+                                        <td>{{ i.distance_mi_field }}</td>
+                                        <td>{{ i.description }}</td>
+                                        <td>{{ i.street }}</td>
+                                        <td>{{ i.city }}</td>
+                                        <td>{{ i.county }}</td>
+                                        <td>{{ i.state }}</td>
+                                        <td>{{ i.zipcode }}</td>
+                                        <td>{{ i.country }}</td>
+                                        <td>{{ i.timezone }}</td>
+                                        <td>{{ i.airport_code }}</td>
+                                        <td>{{ i.weather_timestamp }}</td>
+                                        <td>{{ i.temperature_f_field }}</td>
+                                        <td>{{ i.wind_chill_f_field }}</td>
+                                        <td>{{ i.pressure_in_field }}</td>
+                                        <td>{{ i.visibility_mi_field }}</td>
+                                        <td>{{ i.wind_direction }}</td>
+                                        <td>{{ i.wind_speed_mph_field }}</td>
+                                        <td>{{ i.precipitation_in_field }}</td>
+                                        <td>{{ i.weather_condition }}</td>
+                                        <td>{{ i.amenity }}</td>
+                                        <td>{{ i.bump }}</td>
+                                        <td>{{ i.crossing }}</td>
+                                        <td>{{ i.give_way }}</td>
+                                        <td>{{ i.junction }}</td>
+                                        <td>{{ i.no_exit }}</td>
+                                        <td>{{ i.railway }}</td>
+                                        <td>{{ i.roundabout }}</td>
+                                        <td>{{ i.station }}</td>
+                                        <td>{{ i.stop }}</td>
+                                        <td>{{ i.traffic_calming }}</td>
+                                        <td>{{ i.traffic_signal }}</td>
+                                        <td>{{ i.turning_loop }}</td>
+                                        <td>{{ i.sunrise_sunset }}</td>
+                                        <td>{{ i.civil_twilight }}</td>
+                                        <td>{{ i.nautical_twilight }}</td>
+                                        <td>{{ i.astronomical_twilight }}</td>
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination pagination-lg">
+                                    {{ html_list|safe }}
+
+                                </ul>
+                            </nav>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>
+{% endblock %}
+{% block js %}
+{% endblock %}

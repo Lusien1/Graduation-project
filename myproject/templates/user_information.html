@@ -1,0 +1,170 @@
+<!--引用模板-->
+{% extends 'layout/basic.html' %}
+{% load static %}
+{% block title %}
+{% endblock %}
+{% block css %}
+
+{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+<!--      <meta name="viewport" content="width=device-width, initial-scale=1">-->
+      <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <title>Home page</title>
+      <style>
+    .card-image {
+          background-repeat: no-repeat;
+          background-position: 50% 50%;
+          background-size: cover;
+          width: 60%;
+          height: 60%;
+<!--          width: 300px;-->
+<!--          height: 300px;-->
+        }
+</style>
+  </head>
+<body>
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row" style="width:100%;">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Edit Profile</h4>
+                            </div>
+                            <div class="content">
+                                <form method="post" action="">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>Company (disabled)</label>
+                                                <input type="text" class="form-control" disabled placeholder="Company" value="Beijing Jiaotong University">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Username</label>
+                                                <input type="text" class="form-control" placeholder="Username" value="{{ information.username }}" name="username">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Email address</label>
+                                                <input type="email" class="form-control" placeholder="Email" value="{{ information.email }}" name="email">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>First Name</label>
+                                                <input type="text" class="form-control" placeholder="First Name" value="{{ information.fname }}" name="fname">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Last Name</label>
+                                                <input type="text" class="form-control" placeholder="Last Name" value="{{ information.lname }}" name="lname">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Address</label>
+                                                <input type="text" class="form-control" placeholder="Home Address" value="{{ information.address }}" name="address">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>City</label>
+                                                <input type="text" class="form-control" placeholder="City" value="{{ information.city }}" name="city">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Country</label>
+                                                <input type="text" class="form-control" placeholder="Country" value="{{ information.country }}" name="country">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Postal Code</label>
+                                                <input type="number" class="form-control" placeholder="ZIP Code" value="{{ information.zipcode }}" name="zipcode">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>About Me</label>
+                                                <textarea rows="5" class="form-control" placeholder="Here can be your description" value="{{ information.description }}" name="description">{{ information.description }}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
+                                    <div class="clearfix"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-user">
+                            <div class="image">
+                                <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="..."/>
+                            </div>
+                            <div class="content">
+                                <div class="author">
+                                     <a href="#">
+                                    <img class="avatar border-gray" src="{% static 'img/faces/myphoto.jpg' %}" alt="..."/>
+                                         <form method="post" enctype="multipart/form-data" action="{% url 'user_information' %}">
+                                            {% csrf_token %}
+                                            <div>
+<!--                                                <label for="file"></label>-->
+                                                <input type="file" name="photo_file" content="上传头像"/>
+                                            </div>
+                                            <div>
+                                                <button type="submit">上传头像</button>
+                                            </div>
+                                        </form>
+
+                                      <h4 class="title">{{ information.fname }} {{ information.lname }}<br />
+                                         <small>{{ information.username }}</small>
+                                      </h4>
+                                    </a>
+                                </div>
+                                <p class="description text-center"> {{ information.description }}
+                                </p>
+                            </div>
+                            <hr>
+                            <div class="text-center">
+                                <button href="#" class="btn btn-simple"><i class="fa fa-facebook-square"></i></button>
+                                <button href="#" class="btn btn-simple"><i class="fa fa-twitter"></i></button>
+                                <button href="#" class="btn btn-simple"><i class="fa fa-google-plus-square"></i></button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+</body>
+</html>
+{% endblock %}
+{% block js %}
+{% endblock %}

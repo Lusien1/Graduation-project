@@ -1,0 +1,221 @@
+<!--引用模板-->
+{% extends 'layout/basic.html' %}
+{% load static %}
+{% block title %}
+网站标题
+{% endblock %}
+{% block css %}
+
+{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Home page</title>
+    <style>
+        .card img {
+              object-fit: cover;
+              width: 100%;
+              height: 100%;
+            }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+
+                        <div class="header">
+                            <h4 class="title">重要城市地理位置</h4>
+                            <p class="category">交通事故数前8州</p>
+                        </div>
+                        <div class="content">
+                                <p id="page1"></p>
+<!--                                <p id="page2"></p>-->
+                                    <script>
+                                       $("#page1").load("{% url 'important_city_location' %}");
+<!--                                      $("#page2").load("page/Page_2.html");-->
+                                    </script>
+
+                            <div class="footer">
+<!--                                <div class="legend">-->
+<!--                                    <i class="fa fa-circle text-info"></i> Open-->
+<!--                                    <i class="fa fa-circle text-danger"></i> Bounce-->
+<!--                                    <i class="fa fa-circle text-warning"></i> Unsubscribe-->
+<!--                                </div>-->
+                                <hr>
+                                <div class="stats">
+<!--                                    <i class="fa fa-clock-o"></i> Campaign sent 2 days ago-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card">
+
+                        <div class="header">
+                            <h4 class="title">道路交通事故发生次数前十州</h4>
+<!--                            <p class="category">Last Campaign Performance</p>-->
+                        </div>
+                        <div class="content">
+                            <img src="{% static 'model_result/time_series/top10_city_nums.png' %}"
+
+                            <div class="footer">
+<!--                                <div class="legend">-->
+<!--                                    <i class="fa fa-circle text-info"></i> Open-->
+<!--                                    <i class="fa fa-circle text-danger"></i> Bounce-->
+<!--                                    <i class="fa fa-circle text-warning"></i> Unsubscribe-->
+<!--                                </div>-->
+                                <hr>
+                                <div class="stats">
+<!--                                    <i class="fa fa-clock-o"></i> Campaign sent 2 days ago-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+
+                        <div class="header">
+                            <h4 class="title">2016-2023美国交通事故数据</h4>
+                                <form action="{% url 'city_model_change' %}">
+                                  {% csrf_token %}
+                                    <script>
+                                       function(){
+                                            var city_name= {{ city_name }}
+                                            $("#city_name").val(city_name)
+                                            var model_name= {{ model_name }}
+                                            $("#model_name").val(model_name)
+                                            $("#city_name option[value="{{ city_name }}"]").attr('selected','selected');
+                                    }
+                                </script>
+
+                                  <p>
+                                      <select name="city_name" id="city_name">
+                                          {% if city_name == 'Miami' %}
+                                            <option value="Miami" selected>Miami</option>
+                                          {% endif %}
+                                          {% if city_name != 'Miami' %}
+                                            <option value="Miami">Miami</option>
+                                          {% endif %}
+
+                                          {% if city_name == 'Houston' %}
+                                            <option value="Houston" selected>Houston</option>
+                                          {% endif %}
+                                          {% if city_name != 'Houston' %}
+                                            <option value="Houston">Houston</option>
+                                          {% endif %}
+
+                                          {% if city_name == 'Los Angeles' %}
+                                            <option value="Los Angeles" selected>Los Angeles</option>
+                                          {% endif %}
+                                          {% if city_name != 'Los Angeles' %}
+                                            <option value="Los Angeles">Los Angeles</option>
+                                          {% endif %}
+
+                                          {% if city_name == 'Charlotte' %}
+                                            <option value="Charlotte" selected>Charlotte</option>
+                                          {% endif %}
+                                          {% if city_name != 'Charlotte' %}
+                                            <option value="Charlotte">Charlotte</option>
+                                          {% endif %}
+
+                                          {% if city_name == 'Dallas' %}
+                                            <option value="Dallas" selected>Dallas</option>
+                                          {% endif %}
+                                          {% if city_name != 'Dallas' %}
+                                            <option value="Dallas">Dallas</option>
+                                          {% endif %}
+
+                                          {% if city_name == 'Orlando' %}
+                                            <option value="Orlando" selected>Orlando</option>
+                                          {% endif %}
+                                          {% if city_name != 'Orlando' %}
+                                            <option value="Orlando">Orlando</option>
+                                          {% endif %}
+
+                                          {% if city_name == 'Austin' %}
+                                            <option value="Austin" selected>Austin</option>
+                                          {% endif %}
+                                          {% if city_name != 'Austin' %}
+                                            <option value="Austin">Austin</option>
+                                          {% endif %}
+
+                                          {% if city_name == 'Raleigh' %}
+                                            <option value="Raleigh" selected>Raleigh</option>
+                                          {% endif %}
+                                          {% if city_name != 'Raleigh' %}
+                                            <option value="Raleigh">Raleigh</option>
+                                          {% endif %}
+<!--                                          <option value="Los Angeles">Los Angeles</option>-->
+<!--                                          <option value="Charlotte">Charlotte</option>-->
+<!--                                          <option value="Dallas">Dallas</option>-->
+<!--                                          <option value="Orlando">Orlando</option>-->
+<!--                                          <option value="Austin">Austin</option>-->
+<!--                                          <option value="Raleigh">Raleigh</option>-->
+                                      </select>
+                                      <select name="model_name" id="model_name">
+                                          {% if model_name == 'LSTM' %}
+                                            <option value="LSTM" selected>LSTM</option>
+                                          {% endif %}
+                                          {% if model_name != 'LSTM' %}
+                                            <option value="LSTM">LSTM</option>
+                                          {% endif %}
+
+                                          {% if model_name == 'QLSTM' %}
+                                            <option value="QLSTM" selected>QLSTM</option>
+                                          {% endif %}
+                                          {% if model_name != 'QLSTM' %}
+                                            <option value="QLSTM">QLSTM</option>
+                                          {% endif %}
+<!--                                          <option value="LSTM">LSTM</option>-->
+<!--                                          <option value="QLSTM">QLSTM</option>-->
+                                      </select>
+
+                                  <input type="submit" value='开始预测'></p>
+                                </form>
+
+<!--                                {{ city_name }}-->
+                            <p class="category">重要城市时序分析</p>
+                        </div>
+                        <div class="card-content">
+
+<!--                            <img src="{% static 'model_result/model_name/${model_name}_${city_name}.png' %}">-->
+<!--                            {{ imgstr }}-->
+                            <img src="{% static imgstr %}" >
+<!--                             <div class="card-image" style="background-image: src="{% static 'model_result/LSTM/LSTM_Austin.png' %}"></div>-->
+
+
+                            <div class="footer">
+<!--                                <div class="legend">-->
+<!--                                    <i class="fa fa-circle text-info"></i> Open-->
+<!--                                    <i class="fa fa-circle text-danger"></i> Bounce-->
+<!--                                    <i class="fa fa-circle text-warning"></i> Unsubscribe-->
+<!--                                </div>-->
+                                <hr>
+                                <div class="stats">
+<!--                                    <i class="fa fa-clock-o"></i> Update 1 year ago-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       </div>
+    </div>
+  </body>
+</html>
+{% endblock %}
+{% block js %}
+{% endblock %}

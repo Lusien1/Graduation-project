@@ -1,0 +1,198 @@
+<!--引用模板-->
+{% extends 'layout/basic.html' %}
+{% load static %}
+{% block title %}
+网站标题
+{% endblock %}
+{% block css %}
+
+{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Home page</title>
+    <style>
+        .card img {
+              object-fit: cover;
+              width: 100%;
+              height: 100%;
+            }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+
+                        <div class="header">
+                            <h4 class="title">美国交通事故数据</h4>
+                            <p class="category">按州统计结果</p>
+                        </div>
+                        <div class="content">
+                            <p id="page1"></p>
+<!--                                <p id="page2"></p>-->
+                                    <script>
+                                       $("#page1").load("{% url 'accident_sum_state' %}");
+<!--                                      $("#page2").load("page/Page_2.html");-->
+                                    </script>
+
+                            <div class="footer">
+                                <div class="legend">
+<!--                                    <i class="fa fa-circle text-info"></i> Open-->
+<!--                                    <i class="fa fa-circle text-danger"></i> Bounce-->
+<!--                                    <i class="fa fa-circle text-warning"></i> Unsubscribe-->
+                                </div>
+                                <hr>
+                                <div class="stats">
+<!--                                    <i class="fa fa-clock-o"></i> Update 1 year ago-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    <div class="card">
+
+                        <div class="header">
+                            <h4 class="title">按州聚类结果</h4>
+                            <p class="category">量子Kmeans聚类</p>
+                        </div>
+                        <div class="content">
+                            <p id="page3"></p>
+<!--                                <p id="page2"></p>-->
+                                    <script>
+                                       $("#page3").load("{% url 'state_severity_kmeans' %}");
+<!--                                      $("#page4").load("page/Page_4.html");-->
+                                    </script>
+
+                            <div class="footer">
+                                <div class="legend">
+<!--                                    <i class="fa fa-circle text-info"></i> Open-->
+<!--                                    <i class="fa fa-circle text-danger"></i> Bounce-->
+<!--                                    <i class="fa fa-circle text-warning"></i> Unsubscribe-->
+                                </div>
+                                <hr>
+                                <div class="stats">
+<!--                                    <i class="fa fa-clock-o"></i> Campaign sent 2 days ago-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+
+                        <div class="header">
+                            <h4 class="title">采样1000个事故数据</h4>
+
+                            <p class="category">事故位置可视化</p>
+                        </div>
+                        <div class="card-content">
+                            <p id="page5"></p>
+<!--                                <p id="page2"></p>-->
+                                    <script>
+                                       $("#page5").load("{% url 'sample_1000_' %}");
+<!--                                      $("#page6").load("page/Page_6.html");-->
+                                    </script>
+
+<!--                             <div class="card-image" style="background-image: src="{% static 'model_result/LSTM/LSTM_Austin.png' %}"></div>-->
+
+                            <div class="footer">
+<!--                                <div class="legend">-->
+<!--                                    <i class="fa fa-circle text-info"></i> Open-->
+<!--                                    <i class="fa fa-circle text-danger"></i> Bounce-->
+<!--                                    <i class="fa fa-circle text-warning"></i> Unsubscribe-->
+<!--                                </div>-->
+                                <hr>
+                                <div class="stats">
+<!--                                    <i class="fa fa-clock-o"></i> Update 1 year ago-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card">
+
+                        <div class="header">
+                            <h4 class="title">量子Kmeans聚类</h4>
+
+                            <p class="category">按地理位置聚类</p>
+                        </div>
+                        <div class="card-content">
+                            <p id="page7"></p>
+<!--                                <p id="page2"></p>-->
+                                    <script>
+                                       $("#page7").load("{% url 'sample_1000_kmeans' %}");
+<!--                                      $("#page8").load("page/Page_8.html");-->
+                                    </script>
+
+<!--                             <div class="card-image" style="background-image: src="{% static 'model_result/LSTM/LSTM_Austin.png' %}"></div>-->
+
+                            <div class="footer">
+<!--                                <div class="legend">-->
+<!--                                    <i class="fa fa-circle text-info"></i> Open-->
+<!--                                    <i class="fa fa-circle text-danger"></i> Bounce-->
+<!--                                    <i class="fa fa-circle text-warning"></i> Unsubscribe-->
+<!--                                </div>-->
+                                <hr>
+                                <div class="stats">
+<!--                                    <i class="fa fa-clock-o"></i> Update 1 year ago-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-4">
+                    <div class="card">
+
+                        <div class="header">
+                            <h4 class="title">量子层次聚类</h4>
+
+                            <p class="category">按地理位置聚类</p>
+                        </div>
+                        <div class="card-content">
+                            <p id="page9"></p>
+<!--                                <p id="page2"></p>-->
+                                    <script>
+                                       $("#page9").load("{% url 'sample_1000_hierarchial' %}");
+<!--                                      $("#page10").load("page/Page_10.html");-->
+                                    </script>
+
+<!--                             <div class="card-image" style="background-image: src="{% static 'model_result/LSTM/LSTM_Austin.png' %}"></div>-->
+
+                            <div class="footer">
+<!--                                <div class="legend">-->
+<!--                                    <i class="fa fa-circle text-info"></i> Open-->
+<!--                                    <i class="fa fa-circle text-danger"></i> Bounce-->
+<!--                                    <i class="fa fa-circle text-warning"></i> Unsubscribe-->
+<!--                                </div>-->
+                                <hr>
+                                <div class="stats">
+<!--                                    <i class="fa fa-clock-o"></i> Update 1 year ago-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+       </div>
+    </div>
+  </body>
+</html>
+{% endblock %}
+{% block js %}
+{% endblock %}
